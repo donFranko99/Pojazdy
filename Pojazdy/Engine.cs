@@ -7,7 +7,6 @@ namespace Pojazdy
     public class Engine
     {
         public int BreakHorsePower { get; set; }
-        public EngineType EngineType { get; set; }
         public enum EngineType
         {
             Petrol,
