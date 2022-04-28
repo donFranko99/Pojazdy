@@ -6,6 +6,10 @@ namespace Pojazdy
 {
     public class LandVehicle : BaseVehicle
     {
-        public LandVehicle(string name, double minVelocity = 1, double maxVelocity = 350, Environment environment = Environment.Ground, Engine engine = null) : base(name, minVelocity, maxVelocity, environment, engine){}
+        public int NumberOfWheels { get; }
+        public LandVehicle(string name, int wheels, double minVelocity = 1, double maxVelocity = 350, Environment environment = Environment.Ground, Engine engine = null) : base(name, minVelocity, maxVelocity, environment, engine)
+        {
+            NumberOfWheels = wheels;
+        }
     }
 }
