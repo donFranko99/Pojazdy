@@ -8,6 +8,11 @@ namespace Pojazdy
     {
         public int BreakHorsePower { get; set; }
         public EngineType Type;
+        public Engine(EngineType type, int bhp)
+        {
+            this.Type = type;
+            this.BreakHorsePower = bhp;
+        }
         public enum EngineType
         {
             Petrol,
