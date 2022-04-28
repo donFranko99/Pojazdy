@@ -8,7 +8,7 @@ namespace Pojazdy
     public interface IVehicle
     {
         public void StartStop();
-        public void ChangeSpeed(int acceleration);
+        public void ChangeVelocity(double acceleration);
 
         public static double CalculateSpeed(double currentVelocity, Environment baseEnv, Environment targetEnv)
         {

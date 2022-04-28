@@ -6,12 +6,39 @@ namespace Pojazdy
 {
     public abstract class BaseVehicle : IVehicle
     {
-        public string Name { get; }
-        public bool IsMoving { get; }
-        public double CurrentVelocity { get; }
+        private string name;
+        private bool isMoving;
+        private double currentVelocity;
+        public string Name { get => name; }
+        public bool IsMoving { get => isMoving; }
+        public double CurrentVelocity { get => currentVelocity; }
         public double MinVelocity { get; }
         public double MaxVelocity { get; }
         public Environment Environment { get; }
         public Engine Engine { get; }
+
+        public void StartStop()
+        {
+            if (isMoving)
+            {
+                currentVelocity = 0;
+                Console.WriteLine($"Vehicle {Name} stopped");
+            }
+            else
+            {
+                currentVelocity = MinVelocity;
+                Console.WriteLine($"Vehicle {Name} started\nCurrent velocity: {currentVelocity}");
+            }
+            isMoving = !isMoving;
+        }
+
+        public void ChangeVelocity(double acceleration)
+        {
+            currentVelocity += acceleration;
+            if (currentVelocity > MaxVelocity)
+                currentVelocity = MaxVelocity;
+            if (currentVelocity < MinVelocity)
+                currentVelocity = MinVelocity;
+        }
     }
 }
