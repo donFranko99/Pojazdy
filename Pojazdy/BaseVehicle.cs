@@ -31,7 +31,6 @@ namespace Pojazdy
             }
             isMoving = !isMoving;
         }
-
         public void ChangeVelocity(double acceleration)
         {
             currentVelocity += acceleration;
