@@ -13,6 +13,10 @@ namespace Pojazdy
             this.Type = type;
             this.BreakHorsePower = bhp;
         }
+        public override string ToString()
+        {
+            return $"Engine type: {Type}\nBHP: {BreakHorsePower}";
+        }
         public enum EngineType
         {
             Petrol,

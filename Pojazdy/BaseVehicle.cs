@@ -9,11 +9,23 @@ namespace Pojazdy
         private string name;
         private bool isMoving;
         private double currentVelocity;
+        private string nativeVelocityUnit;
         public string Name { get => name; }
-        public bool IsMoving { get => isMoving; }
+        public string IsMoving 
+        { 
+            get
+            {
+                if (isMoving)
+                {
+                    return "moving";
+                }
+                return "not moving";
+            } 
+        }
         public double CurrentVelocity { get => currentVelocity; }
         public double MinVelocity { get; }
         public double MaxVelocity { get; }
+        public string NativeVelocityUnit { get => nativeVelocityUnit; }
         public Environment Environment { get; }
         public Engine Engine { get; }
 
@@ -27,7 +39,7 @@ namespace Pojazdy
             else
             {
                 currentVelocity = MinVelocity;
-                Console.WriteLine($"Vehicle {Name} started\nCurrent velocity: {currentVelocity}");
+                Console.WriteLine($"Vehicle {Name} started\nCurrent velocity: {currentVelocity} {nativeVelocityUnit}");
             }
             isMoving = !isMoving;
         }
@@ -38,6 +50,18 @@ namespace Pojazdy
                 currentVelocity = MaxVelocity;
             if (currentVelocity < MinVelocity)
                 currentVelocity = MinVelocity;
+        }
+        public override string ToString()
+        {
+            StringBuilder s = null;
+            s.AppendLine($"Vehicle: {name}");
+            s.AppendLine($"Current Environment: {Environment}");
+            s.AppendLine($"Current state: {IsMoving}");
+            s.AppendLine($"Max velocity in this environment: {MaxVelocity}\nMin velocity in this environment: {MinVelocity}");
+            s.AppendLine($"Current velocity: {CurrentVelocity}");
+            if (Engine!=null)
+                s.AppendLine(Engine.ToString());
+            return s.ToString();
         }
         public BaseVehicle(string name, Environment environment, Engine engine=null)
         {
