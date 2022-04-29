@@ -39,13 +39,28 @@ namespace Pojazdy
             if (currentVelocity < MinVelocity)
                 currentVelocity = MinVelocity;
         }
-        public BaseVehicle(string name, double minVelocity=1d, double maxVelocity=40d, Environment environment=Environment.Ground, Engine engine=null)
+        public BaseVehicle(string name, Environment environment, Engine engine=null)
         {
             this.name = name;
-            this.MinVelocity = minVelocity;
-            this.MaxVelocity = maxVelocity;
             this.Environment = environment;
             this.Engine = engine;
+            switch (environment)
+            {
+                case Environment.Air:
+                    MinVelocity = 20;
+                    MaxVelocity = 200;
+                    break;
+                case Environment.Water:
+                    MinVelocity = 1;
+                    MaxVelocity = 40;
+                    break;
+                case Environment.Ground:
+                    MinVelocity = 1;
+                    MaxVelocity = 350;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

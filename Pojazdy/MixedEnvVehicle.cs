@@ -20,10 +20,8 @@ namespace Pojazdy
             }
             currentEnvironment = Environment;
         }
-        public MixedEnvVehicle(string name, double minVelocity = 1, double maxVelocity = 40, double minAltVelocity = 1, double maxAltVelocity = 40, Environment environment = Environment.Ground, Environment alternateEnvironment = Environment.Water, Engine engine = null) : base(name, minVelocity, maxVelocity, environment, engine)
+        public MixedEnvVehicle(string name, Environment environment, Environment alternateEnvironment, Engine engine = null) : base(name, environment, engine)
         {
-            MinAltVelocity = minVelocity;
-            MaxAltVelocity = maxVelocity;
             AlternateEnvironment = alternateEnvironment;
         }
 
