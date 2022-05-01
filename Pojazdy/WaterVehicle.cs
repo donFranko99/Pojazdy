@@ -11,7 +11,7 @@ namespace Pojazdy
         {
             StringBuilder s = null;
             s.Append(base.ToString());
-            s.AppendLine($"Displacement: {Displacement}");
+            s.AppendLine($"Displacement: {Displacement} tons");
             return s.ToString();
         }
         public WaterVehicle(string name, double displacement, Environment environment = Environment.Water, Engine engine = null) : base(name, environment, engine)

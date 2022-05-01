@@ -10,6 +10,8 @@ namespace Pojazdy
 
         public double MaxAltVelocity { get; }
         public double MinAltVelocity { get; }
+        public int NumberOfWheels { get; }
+        public double Displacement { get; }
         public Environment AlternateEnvironment { get; }
         public void SwitchCurrentEnvironment()
         {
@@ -24,9 +26,26 @@ namespace Pojazdy
         {
             return IVehicle.CalculateSpeed(CurrentVelocity, currentEnvironment, Environment.Ground);
         }
-        public MixedEnvVehicle(string name, Environment environment, Environment alternateEnvironment, Engine engine = null) : base(name, environment, engine)
+        public override string ToString()
+        {
+            StringBuilder s = null;
+            s.Append(base.ToString());
+            s.AppendLine($"Alternative environment");
+            if (NumberOfWheels != 0)
+                s.AppendLine($"Number of wheels: {NumberOfWheels}");
+            if (Displacement != 0)
+                s.AppendLine($"Displacement: {Displacement} tons");
+            return s.ToString();
+        }
+        public MixedEnvVehicle(string name, Environment environment, Environment alternateEnvironment, int numberOfWheels=0, double displacement=0, Engine engine = null) : base(name, environment, engine)
         {
             AlternateEnvironment = alternateEnvironment;
+            Displacement = displacement;
+            NumberOfWheels = numberOfWheels;
+            if (engine != null && (environment==Environment.Water || alternateEnvironment==Environment.Water))
+            {
+                this.Engine.Type = Engine.EngineType.Diesel;
+            }
             switch (alternateEnvironment)
             {
                 case Environment.Air:
