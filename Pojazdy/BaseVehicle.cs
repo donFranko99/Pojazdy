@@ -51,6 +51,10 @@ namespace Pojazdy
             if (currentVelocity < MinVelocity)
                 currentVelocity = MinVelocity;
         }
+        public double VelocityUniversalValue()
+        {
+            return IVehicle.CalculateSpeed(CurrentVelocity , Environment, Environment.Ground);
+        }
         public override string ToString()
         {
             StringBuilder s = null;
@@ -71,8 +75,8 @@ namespace Pojazdy
             switch (environment)
             {
                 case Environment.Air:
-                    MinVelocity = 20;
-                    MaxVelocity = 200;
+                    MinVelocity = 20;  //Pojazdy powietrzne to tez drony czy helikoptery. Wydaje mi sie, ze w przypadku tych typowo powietrznych pojazdow
+                    MaxVelocity = 200; //wyzsza minimalna predkosc nie wydaje sie byc logicznie poprawna.
                     break;
                 case Environment.Water:
                     MinVelocity = 1;
