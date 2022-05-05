@@ -28,7 +28,6 @@ namespace Pojazdy
         public string NativeVelocityUnit { get => nativeVelocityUnit; }
         public Environment Environment { get; }
         public Engine Engine { get; }
-
         public void StartStop()
         {
             if (isMoving)
@@ -57,7 +56,7 @@ namespace Pojazdy
         }
         public override string ToString()
         {
-            StringBuilder s = null;
+            StringBuilder s = new StringBuilder();
             s.AppendLine($"Vehicle: {name}");
             s.AppendLine($"Current Environment: {Environment}");
             s.AppendLine($"Current state: {IsMoving}");
@@ -67,7 +66,7 @@ namespace Pojazdy
                 s.AppendLine(Engine.ToString());
             return s.ToString();
         }
-        public BaseVehicle(string name, Environment environment, Engine engine=null)
+        public BaseVehicle(string name, Engine engine = null, Environment environment=Environment.Ground)
         {
             this.name = name;
             this.Environment = environment;
@@ -77,14 +76,17 @@ namespace Pojazdy
                 case Environment.Air:
                     MinVelocity = 20;  //Pojazdy powietrzne to tez drony czy helikoptery. Wydaje mi sie, ze w przypadku tych typowo powietrznych pojazdow
                     MaxVelocity = 200; //wyzsza minimalna predkosc nie wydaje sie byc logicznie poprawna.
+                    nativeVelocityUnit = "m/s";
                     break;
                 case Environment.Water:
                     MinVelocity = 1;
                     MaxVelocity = 40;
+                    nativeVelocityUnit = "knots";
                     break;
                 case Environment.Ground:
                     MinVelocity = 1;
                     MaxVelocity = 350;
+                    nativeVelocityUnit = "km/h";
                     break;
                 default:
                     break;

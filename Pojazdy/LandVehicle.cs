@@ -9,12 +9,12 @@ namespace Pojazdy
         public int NumberOfWheels { get; }
         public override string ToString()
         {
-            StringBuilder s = null;
+            StringBuilder s = new StringBuilder();
             s.Append(base.ToString());
             s.AppendLine($"Number of wheels: {NumberOfWheels}");
             return s.ToString();
         }
-        public LandVehicle(string name, int wheels, Environment environment = Environment.Ground, Engine engine = null) : base(name, environment, engine)
+        public LandVehicle(string name, int wheels, Engine engine = null, Environment environment = Environment.Ground) : base(name, engine, environment)
         {
             NumberOfWheels = wheels;
         }

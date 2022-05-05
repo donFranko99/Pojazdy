@@ -7,9 +7,10 @@ namespace Pojazdy
     public class MixedEnvVehicle:BaseVehicle
     {
         private Environment currentEnvironment;
-
+        private string nativeAltVelocityUnit;
         public double MaxAltVelocity { get; }
         public double MinAltVelocity { get; }
+        public string NativeAltVelocityUnit { get => nativeAltVelocityUnit; }
         public int NumberOfWheels { get; }
         public double Displacement { get; }
         public Environment AlternateEnvironment { get; }
@@ -28,7 +29,7 @@ namespace Pojazdy
         }
         public override string ToString()
         {
-            StringBuilder s = null;
+            StringBuilder s = new StringBuilder();
             s.Append(base.ToString());
             s.AppendLine($"Alternative environment");
             if (NumberOfWheels != 0)
@@ -37,7 +38,7 @@ namespace Pojazdy
                 s.AppendLine($"Displacement: {Displacement} tons");
             return s.ToString();
         }
-        public MixedEnvVehicle(string name, Environment environment, Environment alternateEnvironment, int numberOfWheels=0, double displacement=0, Engine engine = null) : base(name, environment, engine)
+        public MixedEnvVehicle(string name, Environment environment, Environment alternateEnvironment, int numberOfWheels=0, double displacement=0, Engine engine = null) : base(name, engine, environment)
         {
             AlternateEnvironment = alternateEnvironment;
             Displacement = displacement;
@@ -51,14 +52,17 @@ namespace Pojazdy
                 case Environment.Air:
                     MinAltVelocity = 20;
                     MaxAltVelocity = 200;
+                    nativeAltVelocityUnit = "m/s";
                     break;
                 case Environment.Water:
                     MinAltVelocity = 1;
                     MaxAltVelocity = 40;
+                    nativeAltVelocityUnit = "knots";
                     break;
                 case Environment.Ground:
                     MinAltVelocity = 1;
                     MaxAltVelocity = 350;
+                    nativeAltVelocityUnit = "km/h";
                     break;
                 default:
                     break;

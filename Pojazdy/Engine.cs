@@ -6,8 +6,8 @@ namespace Pojazdy
 {
     public class Engine
     {
-        public int BreakHorsePower { get; set; }
-        public EngineType Type;
+        public int BreakHorsePower { get; }
+        public EngineType Type { get; set; }
         public Engine(EngineType type, int bhp)
         {
             this.Type = type;
