@@ -44,11 +44,14 @@ namespace Pojazdy
         }
         public void ChangeVelocity(double acceleration)
         {
-            currentVelocity += acceleration;
-            if (currentVelocity > MaxVelocity)
-                currentVelocity = MaxVelocity;
-            if (currentVelocity < MinVelocity)
-                currentVelocity = MinVelocity;
+            if (isMoving)
+            {
+                currentVelocity += acceleration;
+                if (currentVelocity > MaxVelocity)
+                    currentVelocity = MaxVelocity;
+                if (currentVelocity < MinVelocity)
+                    currentVelocity = MinVelocity; 
+            }
         }
         public double VelocityUniversalValue()
         {
@@ -61,7 +64,7 @@ namespace Pojazdy
             s.AppendLine($"Current Environment: {Environment}");
             s.AppendLine($"Current state: {IsMoving}");
             s.AppendLine($"Max velocity in this environment: {MaxVelocity}\nMin velocity in this environment: {MinVelocity}");
-            s.AppendLine($"Current velocity: {CurrentVelocity}");
+            s.AppendLine($"Current velocity: {CurrentVelocity} {NativeVelocityUnit}");
             if (Engine!=null)
                 s.AppendLine(Engine.ToString());
             return s.ToString();
