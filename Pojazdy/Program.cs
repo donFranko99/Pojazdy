@@ -93,7 +93,32 @@ namespace Pojazdy
             }
 
             Console.WriteLine("\n\nSorting ground vehicles from slowest to fastest");
-            
+            List<LandVehicle> land = new List<LandVehicle>();
+            foreach (BaseVehicle veh in vehicles)
+            {
+                if (veh.Environment==Environment.Ground)
+                {
+                    land.Add((LandVehicle)veh);
+                }
+            }
+            for (int i = 0; i < land.Count; i++)
+            {
+                for (int j = 0; j < land.Count - i - 1; j++)
+                {
+                    if (land[j].VelocityUniversalValue() < land[j + 1].VelocityUniversalValue())
+                    {
+                        var tmp = land[j];
+                        land[j] = land[j + 1];
+                        land[j + 1] = tmp;
+                    }
+                }
+            }
+            foreach (BaseVehicle veh in land)
+            {
+                Console.WriteLine(veh.ToString());
+                Console.WriteLine(veh.VelocityUniversalValue());
+                Console.WriteLine("---------------------------------------");
+            }
         }
     }
 }
